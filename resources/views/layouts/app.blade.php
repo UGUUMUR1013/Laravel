@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -15,10 +16,22 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src = "{{ asset('js/app.js') }}"></script>
+    {{-- <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script> --}}
+    {{-- <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script> --}}
+   
+
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        @include('inc.navbar')
+          <div class = "container">
+             @include('inc.messages')
+             @yield('content')
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -35,6 +48,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+             
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -70,11 +84,24 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        {{-- <main class="py-4">
             @yield('content')
-        </main>
+        </main> --}}
+       
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#article-ckeditor' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+    </script>
+  
 </body>
 </html>

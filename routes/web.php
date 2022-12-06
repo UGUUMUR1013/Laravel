@@ -14,10 +14,10 @@ use App\HTTP\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
    
-});
+// });
 
 
 // Route::get('/hello', function () {
@@ -34,6 +34,10 @@ Route::get('/', function () {
  Route::get('/', 'App\HTTP\Controllers\PagesController@index');
  Route::get('/about', 'App\HTTP\Controllers\PagesController@about'); 
  Route::get('/services', 'App\HTTP\Controllers\PagesController@services'); 
+
+ //Route::resource('posts', 'App\HTTP\Controllers\PostController');
+
+ Route::resource('posts', App\HTTP\Controllers\PostController::class);
    //asuuh 
 
 // Route::get('/about', function () {     //asuuh
@@ -46,6 +50,11 @@ Route::get('/', function () {
 //     return 'This is user '.$name. ' with an id of '. $id;
 // });
 
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\DashBoardController::class, 'index']);
